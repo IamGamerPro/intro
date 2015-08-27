@@ -18,6 +18,11 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "del": "^1.2.1",
+    "gulp": "^3.9.0",
+    "gulp-babel": "^5.2.1",
+    "gulp-cached": "^1.1.0",
+    "gulp-snakeskin": "^1.1.10",
     "jscs": "^2.1.0"
   },
   "scripts": {
