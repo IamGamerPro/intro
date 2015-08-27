@@ -1,0 +1,16 @@
+{
+  "name": "IamGamer.pro",
+  "description": "The intro page for IamGamer.pro",
+  "homepage": "https://github.com/IamGamerPro/intro",
+  "version": "0.1.0",
+  "license": "FSFUL",
+  "authors": [
+    {
+      "name": "kobezzza",
+      "email": "kobezzza@mail.ru",
+      "homepage": "https://github.com/kobezzza"
+    }
+  ],
+  "dependencies": {},
+  "devDependencies": {}
+}
