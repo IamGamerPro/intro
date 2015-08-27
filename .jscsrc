@@ -151,7 +151,7 @@
   "requireSpacesInAnonymousFunctionExpression": {
     "beforeOpeningRoundBrace": true,
     "beforeOpeningCurlyBrace": true,
-    "allExcept": ["shorthandMethods"]
+    "allExcept": ["shorthand"]
   },
 
   "disallowSpacesInNamedFunctionExpression": {
