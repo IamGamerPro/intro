@@ -8,11 +8,13 @@
 
 const
 	gulp = require('gulp'),
-	del = require('del');
+	del = require('del'),
+	nib = require('nib');
 
 const
 	ss = require('gulp-snakeskin'),
 	babel = require('gulp-babel'),
+	stylus = require('gulp-stylus'),
 	cached = require('gulp-cached');
 
 gulp.task('clear', function (cb) {
@@ -57,6 +59,22 @@ gulp.task('ss', function (cb) {
 		.on('end', cb);
 });
 
+gulp.task('stylus', function (cb) {
+	gulp.src('./src/**/*.styl')
+		.pipe(cached('build'))
+		.pipe(stylus({
+			use: [nib()]
+		}))
+
+		.on('error', function (err) {
+			console.error(err.message);
+			cb();
+		})
+
+		.pipe(gulp.dest('./dist'))
+		.on('end', cb);
+});
+
 gulp.task('watch', ['default'], function () {
 	function unbind(name) {
 		return function (e) {
@@ -68,6 +86,7 @@ gulp.task('watch', ['default'], function () {
 
 	gulp.watch('./src/**/*.js', ['js']).on('change', unbind('build'));
 	gulp.watch('./src/**/*.ss', ['ss']).on('change', unbind('build'));
+	gulp.watch('./src/**/*.styl', ['stylus']).on('change', unbind('build'));
 });
 
-gulp.task('default', ['js', 'ss']);
+gulp.task('default', ['js', 'ss', 'stylus']);
