@@ -43,8 +43,7 @@ gulp.task('js', function (cb) {
 });
 
 gulp.task('ss', function (cb) {
-	gulp.src('./src/**/*.ss')
-		.pipe(cached('build'))
+	gulp.src('./src/index.ss')
 		.pipe(ss({
 			exec: true,
 			prettyPrint: true
@@ -60,8 +59,7 @@ gulp.task('ss', function (cb) {
 });
 
 gulp.task('stylus', function (cb) {
-	gulp.src('./src/**/*.styl')
-		.pipe(cached('build'))
+	gulp.src('./src/index.styl')
 		.pipe(stylus({
 			use: [nib()]
 		}))
