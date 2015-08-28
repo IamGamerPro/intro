@@ -22,6 +22,14 @@
 	width 22rem
 
 .b-intro
+	p
+		font-size 1.1rem
+		border-bottom 1px solid #222
+		padding 1.5rem
+
+		&:last-of-type
+			border-bottom none
+
 	&__link
 		text-decoration none
 
@@ -29,17 +37,28 @@
 		font-size 1em
 		margin-bottom 1em
 
+	&__wrapper
+		padding 1em
+
 	&__reg
 		margin 0
-		padding 1em
 		border-radius 0.5em 0.5em 0 0
 		color #454545
 		text-shadow 1px 1px darken(#FFF, 15%)
 		text-align center
 
-		h2
-			font-size 1.3em
-			margin-top 0.4em
+	&__sub-hello
+		font-size 1.3em
+		margin-top 0.4em
+
+	&__info
+		border-top 1px solid #999
+		font-size 1.2em
+		margin-top 0.3em
+		color #FFAA00
+		text-shadow 1px 1px rgba(#000, 0.8)
+		background linear-gradient(rgba(#999, 0.7), rgba(#999, 0))
+		padding 1em
 
 	&__desc
 		padding 1em
