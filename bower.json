@@ -11,6 +11,9 @@
       "homepage": "https://github.com/kobezzza"
     }
   ],
-  "dependencies": {},
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "sugar": "~1.4.1"
+  },
   "devDependencies": {}
 }
