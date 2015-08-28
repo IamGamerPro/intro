@@ -29,7 +29,7 @@ export default class Background {
 			key = `dark-background-${this.i++}`;
 
 		if (this.cache[key]) {
-			this.applyStyle(`dark-def-background-${this.i++}`, this.cache[key]);
+			this.applyStyle(key, this.cache[key]);
 			return;
 		}
 
@@ -84,7 +84,7 @@ export default class Background {
 			key = `metallic-background-${this.i++}`;
 
 		if (this.cache[key]) {
-			this.applyStyle(`dark-def-background-${this.i++}`, this.cache[key]);
+			this.applyStyle(key, this.cache[key]);
 			return;
 		}
 
