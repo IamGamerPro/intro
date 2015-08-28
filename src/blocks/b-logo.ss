@@ -6,7 +6,7 @@
  * https://github.com/IamGamerPro/intro/blob/master/LICENSE
  */
 
-- template bLogo(params = {})
+- template bLogo(@params = {})
 	: color = { &
 		'def': {
 			'#48443E': '#48443E',
@@ -19,7 +19,7 @@
 			'#6B6966': '#6B6966',
 			'#FFAA00': '#888'
 		}
-	}[params['style'] || 'def'] .
+	}[@style || 'def'] .
 
 	< svg &
 		width = 100% |

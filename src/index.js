@@ -10,4 +10,5 @@ import Background from './background';
 
 jQuery(() => {
 	new Background(document.body).setDarkBackground();
+	new Background(jQuery('#top-header')).setMetallicBackground();
 });
