@@ -67,6 +67,7 @@
 										< .&__link
 											< img.&__logo src = ../img/${el}.jpg | alt = | width = 381
 
+				< .b-footer
 					< footer.g-cont
 						< .b-copyright
 							IamGamer.pro (c) {new Date().getFullYear()}
