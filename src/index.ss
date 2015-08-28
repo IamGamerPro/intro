@@ -40,7 +40,7 @@
 								< h2
 									< a.&__link href = http://iamgamer.pro :: IamGamer.pro
 
-									| - социальная сеть для всех, кто играет в компьютерные игры.
+									| - социальная платформа для всех, кто играет в компьютерные игры и для тех, кто их делает.
 
 							< .&__desc
 								< p
@@ -61,7 +61,7 @@
 
 						< section.b-top-clans
 							< h6.&__title
-								самые активные кланы
+								Наши достоинства:
 
 							< ul.&__list
 								- forEach ['clan-1', 'clan-2', 'clan-3'] => el
@@ -151,4 +151,5 @@
 											Остальные видео
 
 					< footer.g-cont
-						IamGamer.pro © {new Date().getFullYear()}.
+						< .b-copyright
+							IamGamer.pro (c) {new Date().getFullYear()}

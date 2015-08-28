@@ -11,8 +11,9 @@ export default class Background {
 	 * @param {(!jQuery|!Element)} node
 	 */
 	constructor(node) {
-		this.node = jQuery(node);
 		this.i = 0;
+		this.node = node instanceof jQuery ?
+			node : jQuery(node);
 
 		try {
 			this.cache = JSON.parse(localStorage.getItem('backgroundCache'));
@@ -152,7 +153,10 @@ export default class Background {
 		`;
 
 		this.cache[className] = dataURI;
-		localStorage.setItem('backgroundCache', JSON.stringify(this.cache));
+		try {
+			localStorage.setItem('backgroundCache', JSON.stringify(this.cache));
+
+		} catch (ignore) {}
 
 		document.head.appendChild(style);
 		this.node.addClass(className);
