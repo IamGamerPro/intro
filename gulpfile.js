@@ -8,29 +8,40 @@
 
 const
 	gulp = require('gulp'),
-	del = require('del'),
+	through2 = require('through2'),
+	ok = require('okay'),
+	del = require('del');
+
+const
+	browserify = require('browserify'),
+	babelify = require('babelify'),
 	nib = require('nib');
 
 const
 	ss = require('gulp-snakeskin'),
-	babel = require('gulp-babel'),
-	stylus = require('gulp-stylus'),
-	cached = require('gulp-cached');
+	stylus = require('gulp-stylus');
 
 gulp.task('clear', function (cb) {
 	del(['./dist'], cb);
 });
 
 gulp.task('js', function (cb) {
-	gulp.src('./src/**/*.js')
-		.pipe(cached('build'))
-		.pipe(babel({
-			compact: false,
-			auxiliaryCommentBefore: 'istanbul ignore next',
-			loose: 'all',
-			optional: [
-				'spec.undefinedToVoid'
-			]
+	return gulp.src('./src/index.js')
+		.pipe(through2.obj(function (file, enc, next) {
+			browserify(file.path)
+				.transform(babelify.configure({
+					compact: false,
+					auxiliaryCommentBefore: 'istanbul ignore next',
+					loose: 'all',
+					optional: [
+						'spec.undefinedToVoid'
+					]
+				}))
+
+				.bundle(ok(next, function (res) {
+					file.contents = res;
+					next(null, file);
+				}));
 		}))
 
 		.on('error', function (err) {
@@ -38,8 +49,7 @@ gulp.task('js', function (cb) {
 			cb();
 		})
 
-		.pipe(gulp.dest('./dist'))
-		.on('end', cb);
+		.pipe(gulp.dest('./dist'));
 });
 
 gulp.task('ss', function (cb) {
@@ -74,17 +84,9 @@ gulp.task('stylus', function (cb) {
 });
 
 gulp.task('watch', ['default'], function () {
-	function unbind(name) {
-		return function (e) {
-			if (e.type === 'deleted') {
-				delete cached.caches[name][e.path];
-			}
-		};
-	}
-
-	gulp.watch('./src/**/*.js', ['js']).on('change', unbind('build'));
-	gulp.watch('./src/**/*.ss', ['ss']).on('change', unbind('build'));
-	gulp.watch('./src/**/*.styl', ['stylus']).on('change', unbind('build'));
+	gulp.watch('./src/**/*.js', ['js']);
+	gulp.watch('./src/**/*.ss', ['ss']);
+	gulp.watch('./src/**/*.styl', ['stylus']);
 });
 
 gulp.task('default', ['js', 'ss', 'stylus']);

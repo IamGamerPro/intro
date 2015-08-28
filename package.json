@@ -18,14 +18,16 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "babelify": "^6.2.0",
+    "browserify": "^11.0.1",
     "del": "^1.2.1",
     "gulp": "^3.9.0",
-    "gulp-babel": "^5.2.1",
-    "gulp-cached": "^1.1.0",
     "gulp-snakeskin": "^1.1.10",
     "gulp-stylus": "^2.0.6",
     "jscs": "^2.1.0",
-    "nib": "^1.1.0"
+    "nib": "^1.1.0",
+    "okay": "^1.0.0",
+    "through2": "^2.0.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0",
