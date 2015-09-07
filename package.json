@@ -18,10 +18,12 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "async": "^1.4.2",
     "babelify": "^6.2.0",
     "browserify": "^11.0.1",
     "del": "^1.2.1",
     "gulp": "^3.9.0",
+    "gulp-rename": "^1.2.2",
     "gulp-snakeskin": "^1.1.10",
     "gulp-stylus": "^2.0.6",
     "jscs": "^2.1.0",

@@ -7,6 +7,7 @@
  */
 
 const
+	async = require('async'),
 	gulp = require('gulp'),
 	through2 = require('through2'),
 	ok = require('okay'),
@@ -18,6 +19,7 @@ const
 	nib = require('nib');
 
 const
+	rename = require('gulp-rename'),
 	ss = require('gulp-snakeskin'),
 	stylus = require('gulp-stylus');
 
@@ -53,19 +55,42 @@ gulp.task('js', function (cb) {
 });
 
 gulp.task('ss', function (cb) {
-	gulp.src('./src/index.ss')
-		.pipe(ss({
-			exec: true,
-			prettyPrint: true
-		}))
+	async.parallel([
+		function (cb) {
+			gulp.src('./src/index.ss')
+				.pipe(ss({
+					exec: true,
+					prettyPrint: true,
+					language: require('./src/en.json')
+				}))
 
-		.on('error', function (err) {
-			console.error(err.message);
-			cb();
-		})
+				.on('error', function (err) {
+					console.error(err.message);
+					cb();
+				})
 
-		.pipe(gulp.dest('./dist'))
-		.on('end', cb);
+				.pipe(gulp.dest('./dist'))
+				.on('end', cb);
+		},
+
+		function (cb) {
+			gulp.src('./src/index.ss')
+				.pipe(ss({
+					exec: true,
+					prettyPrint: true,
+					language: require('./src/ru.json')
+				}))
+
+				.on('error', function (err) {
+					console.error(err.message);
+					cb();
+				})
+
+				.pipe(rename({suffix: '.ru'}))
+				.pipe(gulp.dest('./dist'))
+				.on('end', cb);
+		}
+	], cb);
 });
 
 gulp.task('stylus', function (cb) {
